@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMAY - Conservación y Biodiversidad del Perú</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== ROOT VARIABLES - SAMAY Brand Palette ===== */
+        :root {
+            /* Core Brand Colors from Logo Analysis */
+            --rainforest-green: #2E6E4C;       /* Amazon vegetation, grounding */
+            --toucan-yellow: #F4C542;          /* Youthful energy, vibrancy */
+            --andean-blue: #5DA9E9;            /* Scientific precision, clarity */
+            --coastal-sand: #D9CBA3;           /* Coastal ecosystems, balance */
+            --molecular-violet: #7C5DA3;       /* Innovation, molecular biology */
+            --charcoal-black: #2B2B2B;         /* Professionalism, text contrast */
+            
+            /* Supporting Colors */
+            --dark-green: #1E4C35;             /* Darker shade for rainforest */
+            --light-yellow: #F8D775;           /* Lighter yellow for highlights */
+            --light-blue: #8BC5FF;             /* Lighter blue for accents */
+            --light-violet: #9575CD;           /* Lighter violet for effects */
+            
+            /* UI Colors */
+            --white: #FFFFFF;
+            --light-bg: #F8F9FA;
+            --shadow: 0 4px 20px rgba(43, 43, 43, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal-black);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            color: var(--rainforest-green);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            color: var(--rainforest-green);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--toucan-yellow);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--dark-green);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: var(--rainforest-green);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--charcoal-black);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--andean-blue);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: var(--toucan-yellow);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-alt {
+            background-color: var(--coastal-sand);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background-color: var(--rainforest-green);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(46, 110, 76, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 110, 76, 0.3);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--andean-blue);
+            color: var(--andean-blue);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--andean-blue);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--toucan-yellow);
+            color: var(--charcoal-black);
+            box-shadow: 0 4px 12px rgba(244, 197, 66, 0.2);
+        }
+
+        .btn-accent:hover {
+            background-color: #E0B43A;
+            color: var(--charcoal-black);
+        }
+
+        .btn-science {
+            background-color: var(--molecular-violet);
+            color: white;
+            box-shadow: 0 4px 12px rgba(124, 93, 163, 0.2);
+        }
+
+        .btn-science:hover {
+            background-color: #6A4F8F;
+            color: white;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            border-bottom: 3px solid var(--rainforest-green);
+        }
+
+        .header-scrolled {
+            padding: 12px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--rainforest-green);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--andean-blue);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-green);
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--toucan-yellow);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--dark-green);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background-color: var(--light-bg);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 95vh;
+            background: linear-gradient(rgba(46, 110, 76, 0.85), rgba(93, 169, 233, 0.75)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-top: 86px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, var(--light-bg));
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* ===== MISSION & VISION ===== */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 50px;
+        }
+
+        .mission-box, .vision-box {
+            background-color: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            transition: var(--transition);
+            border-top: 5px solid transparent;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-box {
+            border-top-color: var(--rainforest-green);
+        }
+
+        .vision-box {
+            border-top-color: var(--molecular-violet);
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .mission-icon {
+            color: var(--rainforest-green);
+        }
+
+        .vision-icon {
+            color: var(--molecular-violet);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            color: var(--dark-green);
+            margin-bottom: 20px;
+        }
+
+        /* ===== IMAGE GALLERY ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(46, 110, 76, 0.9));
+            color: white;
+        }
+
+        .img-caption h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .img-caption p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== INSTAGRAM NEWS ===== */
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .instagram-post {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .instagram-post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .insta-img-container {
+            height: 250px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .insta-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .instagram-post:hover .insta-img {
+            transform: scale(1.05);
+        }
+
+        .insta-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insta-date {
+            font-size: 0.9rem;
+            color: var(--toucan-yellow);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insta-date i {
+            font-size: 0.8rem;
+        }
+
+        .insta-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .insta-link {
+            color: var(--andean-blue);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: white;
+            padding: 35px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            border-top-color: var(--toucan-yellow);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            border: 5px solid var(--light-bg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-name {
+            color: var(--dark-green);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .member-role {
+            color: var(--molecular-violet);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--rainforest-green);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+
+        .footer-logo span {
+            color: var(--toucan-yellow);
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: -10px;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links h3:after, .footer-contact h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--toucan-yellow);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: var(--light-yellow);
+        }
+
+        .footer-links a:hover {
+            color: var(--toucan-yellow);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            color: var(--toucan-yellow);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--toucan-yellow);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .copyright a {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1100px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 86px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 30px 20px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                gap: 25px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                height: 85vh;
+                background-attachment: scroll;
+                margin-top: 82px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .footer-content {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="#inicio" class="logo">
+                <!-- Replace this with your actual logo.jpeg when you have it -->
+                <div class="logo-img" style="background-color: var(--rainforest-green); color: var(--toucan-yellow); width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem;">
+                    S
+                </div>
+                <div class="logo-text">
+                    <div class="logo-title" style="color: var(--rainforest-green);">SAMAY</div>
+                    <div class="logo-subtitle" style="color: var(--andean-blue);">CONSERVACIÓN</div>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+                <a href="#mision"><i class="fas fa-bullseye"></i> Misión</a>
+                <a href="#proyectos"><i class="fas fa-leaf"></i> Proyectos</a>
+                <a href="#noticias"><i class="fas fa-newspaper"></i> Noticias</a>
+                <a href="#equipo"><i class="fas fa-users"></i> Equipo</a>
+                <a href="#contacto" class="btn btn-outline" style="padding: 10px 20px; margin-top: 10px;">
+                    <i class="fas fa-envelope"></i> Contacto
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <h1>Ciencia para la Conservación del Perú</h1>
+            <p>Investigación de campo avanzada, genómica de vida silvestre y acción comunitaria para proteger la biodiversidad única de los ecosistemas peruanos.</p>
+            <div class="hero-buttons">
+                <a href="#proyectos" class="btn">
+                    <i class="fas fa-binoculars"></i> Nuestros Proyectos
+                </a>
+                <a href="#contacto" class="btn btn-accent">
+                    <i class="fas fa-hands-helping"></i> Colaborar
+                </a>
+                <a href="#equipo" class="btn btn-science">
+                    <i class="fas fa-dna"></i> Nuestra Ciencia
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MISSION & VISION SECTION ===== -->
+    <section class="section" id="mision">
+        <div class="container">
+            <h2>Nuestra Misión y Visión</h2>
+            <p style="max-width: 900px; margin-bottom: 40px; font-size: 1.2rem; color: var(--charcoal-black);">SAMAY es una organización sin fines de lucro constituida en el Perú el 13 de agosto de 2024, dedicada a la conservación del medio ambiente a través de investigación científica rigurosa, educación ambiental innovadora y acción comunitaria transformadora.</p>
+            
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <div class="icon-container">
+                        <i class="fas fa-bullseye mission-icon"></i>
+                    </div>
+                    <h3>Nuestra Misión</h3>
+                    <p>Realizar proyectos de investigación vinculados a la conservación del medio ambiente en el Perú; promover la educación ambiental y la conciencia ecológica en la sociedad peruana; desarrollar actividades orientadas a la conservación de los recursos naturales y la biodiversidad.</p>
+                    <p>Colaborar con instituciones públicas y privadas en la implementación de acciones a favor de la conservación ambiental; incentivar y desarrollar actividades de carácter cultural, educativo, social, deportivo y recreativo que fortalezcan valores morales, cívicos y patrióticos.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <div class="icon-container">
+                        <i class="fas fa-eye vision-icon"></i>
+                    </div>
+                    <h3>Nuestra Visión</h3>
+                    <p>Contribuir al desarrollo sostenible y a la mejora de la calidad de vida de las comunidades locales; gestionar y canalizar ayudas de procedencia nacional e internacional dirigidas a grupos sociales económicamente marginados o en estado de necesidad.</p>
+                    <p>Fortalecer las capacidades técnicas y científicas para la protección y preservación de la biodiversidad, convirtiéndonos en referentes de conservación basada en evidencia científica y compromiso comunitario en el Perú.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMAGE GALLERY SECTION ===== -->
+    <section class="section section-alt" id="proyectos">
+        <div class="container">
+            <h2>Investigación en Acción</h2>
+            <p style="max-width: 800px; margin-bottom: 20px;">Documentamos, estudiamos y protegemos la biodiversidad peruana mediante investigación de campo rigurosa y tecnología de vanguardia.</p>
+            
+            <div class="gallery">
+                <!-- Image 1 - Field Research -->
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Investigación de campo en la Amazonía" class="gallery-img">
+                    <div class="img-caption">
+                        <h4>Investigación en la Amazonía</h4>
+                        <p>Monitoreo de especies en la Reserva Nacional Tambopata</p>
+                    </div>
+                </div>
+                
+                <!-- Image 2 - Genomics -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Secuenciación genómica" class="gallery-img">
+                    <div class="img-caption">
+                        <h4>Genómica de Conservación</h4>
+                        <p>Análisis de ADN para estudios poblacionales</p>
+                    </div>
+                </div>
+                
+                <!-- Image 3 - Community Work -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Trabajo comunitario" class="gallery-img">
+                    <div class="img-caption">
+                        <h4>Educación Comunitaria</h4>
+                        <p>Talleres ambientales con comunidades locales</p>
+                    </div>
+                </div>
+                
+                <!-- Image 4 - Biodiversity -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Biodiversidad andina" class="gallery-img">
+                    <div class="img-caption">
+                        <h4>Biodiversidad Andina</h4>
+                        <p>Documentación de especies en los Andes peruanos</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#contacto" class="btn">
+                    <i class="fas fa-file-alt"></i> Ver Informes de Proyectos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INSTAGRAM NEWS SECTION ===== -->
+    <section class="section" id="noticias">
+        <div class="container">
+            <h2>Últimas Noticias</h2>
+            <p style="max-width: 800px; margin-bottom: 20px;">Sigue nuestro trabajo en tiempo real a través de Instagram. Expediciones, descubrimientos y proyectos comunitarios.</p>
+            
+            <div class="instagram-grid">
+                <!-- Instagram Post 1 -->
+                <div class="instagram-post">
+                    <div class="insta-img-container">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nueva expedición" class="insta-img">
+                    </div>
+                    <div class="insta-content">
+                        <div class="insta-date">
+                            <i class="far fa-calendar-alt"></i> 15 Marzo 2024 • Expedición
+                        </div>
+                        <p class="insta-text">Iniciamos nueva expedición a la Reserva Nacional Tambopata para monitoreo de poblaciones de aves endémicas. 15 días de trabajo de campo con tecnología de rastreo satelital.</p>
+                        <a href="https://instagram.com" target="_blank" class="insta-link">
+                            Ver en Instagram <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Instagram Post 2 -->
+                <div class="instagram-post">
+                    <div class="insta-img-container">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taller educativo" class="insta-img">
+                    </div>
+                    <div class="insta-content">
+                        <div class="insta-date">
+                            <i class="far fa-calendar-alt"></i> 10 Marzo 2024 • Educación
+                        </div>
+                        <p class="insta-text">Taller de genética aplicada a la conservación para 50 estudiantes de biología de la Universidad Nacional Mayor de San Marcos. Próximamente en la UNALM.</p>
+                        <a href="https://instagram.com" target="_blank" class="insta-link">
+                            Ver en Instagram <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Instagram Post 3 -->
+                <div class="instagram-post">
+                    <div class="insta-img-container">
+                        <img src="https://images.unsplash.com/photo-1516627145497-ae6954251f70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Publicación científica" class="insta-img">
+                    </div>
+                    <div class="insta-content">
+                        <div class="insta-date">
+                            <i class="far fa-calendar-alt"></i> 5 Marzo 2024 • Investigación
+                        </div>
+                        <p class="insta-text">Nueva publicación en Conservation Genetics sobre diversidad genética del mono choro coliamarillo (Lagothrix flavicauda). Colaboración internacional.</p>
+                        <a href="https://instagram.com" target="_blank" class="insta-link">
+                            Ver en Instagram <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://instagram.com" target="_blank" class="btn btn-accent">
+                    <i class="fab fa-instagram"></i> Síguenos en Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TEAM SECTION ===== -->
+    <section class="section section-alt"
